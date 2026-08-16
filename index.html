@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Take Five — منيو المطعم</title>
+<meta name="theme-color" content="#0D0D0D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230D0D0D'/%3E%3Cg stroke='%23FFB21C' stroke-width='4' stroke-linecap='round'%3E%3Cline x1='16' y1='16' x2='16' y2='48'/%3E%3Cline x1='24' y1='16' x2='24' y2='48'/%3E%3Cline x1='32' y1='16' x2='32' y2='48'/%3E%3Cline x1='40' y1='16' x2='40' y2='48'/%3E%3Cline x1='13' y1='44' x2='43' y2='20'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ── Intro ─────────────────────────────────────────────────── -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro-mark">
+    <svg viewBox="0 0 64 64" class="tally-mark" aria-hidden="true">
+      <g stroke="#FFB21C" stroke-width="4" stroke-linecap="round">
+        <line x1="16" y1="14" x2="16" y2="50"/>
+        <line x1="24" y1="14" x2="24" y2="50"/>
+        <line x1="32" y1="14" x2="32" y2="50"/>
+        <line x1="40" y1="14" x2="40" y2="50"/>
+        <line x1="13" y1="46" x2="43" y2="18"/>
+      </g>
+    </svg>
+    <span class="intro-word">Take Five</span>
+  </div>
+</div>
+
+<!-- ── Header ────────────────────────────────────────────────── -->
+<header class="site-header">
+  <a href="#" class="brand" aria-label="Take Five">
+    <svg viewBox="0 0 64 64" class="tally-mark" aria-hidden="true">
+      <g stroke="#FFB21C" stroke-width="5" stroke-linecap="round">
+        <line x1="16" y1="14" x2="16" y2="50"/>
+        <line x1="24" y1="14" x2="24" y2="50"/>
+        <line x1="32" y1="14" x2="32" y2="50"/>
+        <line x1="40" y1="14" x2="40" y2="50"/>
+        <line x1="13" y1="46" x2="43" y2="18"/>
+      </g>
+    </svg>
+    <span>Take Five</span>
+  </a>
+</header>
+
+<main>
+  <!-- ── Hero ────────────────────────────────────────────────── -->
+  <section class="hero" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">TAKE FIVE</p>
+      <h1 class="hero-title">Fresh Food.<br>Great Taste.</h1>
+      <button class="btn-view-menu" id="viewMenuBtn" type="button">
+        View Menu
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ── Categories / Menu ───────────────────────────────────── -->
+  <section class="categories-section" id="categories">
+    <div class="section-head">
+      <p class="section-eyebrow">المنيو</p>
+      <h2 class="section-title">إختار قسمك</h2>
+    </div>
+
+    <p class="menu-state" id="menuState" hidden></p>
+
+    <div class="categories-grid" id="categoriesGrid" aria-live="polite"></div>
+  </section>
+</main>
+
+<!-- ── Floating cart bar ─────────────────────────────────────── -->
+<button class="cart-bar" id="cartBar" type="button" hidden aria-label="افتح السلة">
+  <span class="cart-bar-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1.2 13H4.8L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+    <span class="cart-bar-count" id="cartCount">0</span>
+  </span>
+  <span class="cart-bar-label">شاهد السلة</span>
+  <span class="cart-bar-total" id="cartTotal">0 EGP</span>
+</button>
+
+<!-- ── Cart modal ────────────────────────────────────────────── -->
+<div class="modal-overlay" id="cartModal" aria-hidden="true">
+  <div class="modal-sheet" role="dialog" aria-modal="true" aria-label="السلة">
+    <div class="modal-head">
+      <h3>سلتك</h3>
+      <button class="modal-close" id="closeCartBtn" type="button" aria-label="إغلاق">✕</button>
+    </div>
+
+    <p class="cart-empty" id="cartEmpty">السلة فاضية دلوقتي.</p>
+    <ul class="cart-items" id="cartItems" hidden></ul>
+
+    <div class="modal-foot">
+      <button class="btn-accept-order" id="acceptOrderBtn" type="button" disabled>تأكيد الطلب</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Checkout modal ────────────────────────────────────────── -->
+<div class="modal-overlay" id="checkoutModal" aria-hidden="true">
+  <div class="modal-sheet" role="dialog" aria-modal="true" aria-label="إتمام الطلب">
+    <div class="modal-head">
+      <h3>إتمام الطلب</h3>
+      <button class="modal-close" id="closeCheckoutBtn" type="button" aria-label="إغلاق">✕</button>
+    </div>
+
+    <!-- Step 1: customer info (delivery only) -->
+    <div class="checkout-step" data-step="customerInfo">
+      <p class="checkout-question">بيانات التوصيل</p>
+      <div class="checkout-form" id="customerFields"></div>
+      <p class="form-error" id="customerFormError" role="alert" hidden></p>
+      <div class="checkout-actions">
+        <button class="btn-solid" id="toReviewBtn" type="button" style="flex:1">مراجعة الطلب</button>
+      </div>
+    </div>
+
+    <!-- Step 2: review -->
+    <div class="checkout-step" data-step="review" hidden>
+      <div class="review-block" id="reviewDetails"></div>
+      <ul class="review-items" id="reviewItems"></ul>
+      <div class="review-total-row"><span>الإجمالي</span><strong id="reviewTotal"></strong></div>
+      <div class="checkout-actions">
+        <button class="btn-outline" id="backToInfoBtn" type="button">رجوع</button>
+        <button class="btn-whatsapp" id="sendWhatsAppBtn" type="button">
+          إرسال الطلب على واتساب
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Footer ────────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-brand">
+    <svg viewBox="0 0 64 64" class="tally-mark tally-mark-light" aria-hidden="true">
+      <g stroke="#FFFFFF" stroke-width="5" stroke-linecap="round">
+        <line x1="16" y1="14" x2="16" y2="50"/>
+        <line x1="24" y1="14" x2="24" y2="50"/>
+        <line x1="32" y1="14" x2="32" y2="50"/>
+        <line x1="40" y1="14" x2="40" y2="50"/>
+        <line x1="13" y1="46" x2="43" y2="18"/>
+      </g>
+    </svg>
+    <span>Take Five</span>
+  </div>
+  <div class="footer-info">
+    <div>
+      <h5>الموقع</h5>
+      <p>الشروق - مول مون بارك<br>جانب شركة أمان</p>
+    </div>
+    <div>
+      <h5>التوصيل</h5>
+      <p dir="ltr">01040536027</p>
+    </div>
+  </div>
+</footer>
+
+<script src="api.js"></script>
+<script src="script.js"></script>
+<script src="orders.js"></script>
+</body>
+</html>
