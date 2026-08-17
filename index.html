@@ -4,61 +4,37 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Take Five — منيو المطعم</title>
-<meta name="theme-color" content="#0D0D0D">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230D0D0D'/%3E%3Cg stroke='%23FFB21C' stroke-width='4' stroke-linecap='round'%3E%3Cline x1='16' y1='16' x2='16' y2='48'/%3E%3Cline x1='24' y1='16' x2='24' y2='48'/%3E%3Cline x1='32' y1='16' x2='32' y2='48'/%3E%3Cline x1='40' y1='16' x2='40' y2='48'/%3E%3Cline x1='13' y1='44' x2='43' y2='20'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ── Intro ─────────────────────────────────────────────────── -->
-<div class="intro" id="intro" aria-hidden="true">
-  <div class="intro-mark">
-    <svg viewBox="0 0 64 64" class="tally-mark" aria-hidden="true">
-      <g stroke="#FFB21C" stroke-width="4" stroke-linecap="round">
-        <line x1="16" y1="14" x2="16" y2="50"/>
-        <line x1="24" y1="14" x2="24" y2="50"/>
-        <line x1="32" y1="14" x2="32" y2="50"/>
-        <line x1="40" y1="14" x2="40" y2="50"/>
-        <line x1="13" y1="46" x2="43" y2="18"/>
+<!-- ── Header (Take Five logo, permanent) ───────────────────── -->
+<header class="site-header" id="siteHeader">
+  <div class="brand-logo brand-logo--intro">
+    <svg class="brand-sparkle" viewBox="0 0 40 40" aria-hidden="true">
+      <g stroke-width="4" stroke-linecap="round">
+        <line x1="20" y1="4" x2="20" y2="15"/>
+        <line x1="8" y1="9" x2="15" y2="18"/>
+        <line x1="3" y1="21" x2="14" y2="23"/>
       </g>
     </svg>
-    <span class="intro-word">Take Five</span>
+    <div class="brand-logo-row">
+      <span class="brand-five-num">5</span>
+      <span class="brand-take">Take</span>
+      <span class="brand-five-word">Five</span>
+    </div>
+    <svg class="brand-smile" viewBox="0 0 220 40" aria-hidden="true">
+      <path d="M12 8 C 60 36, 160 36, 208 8" fill="none" stroke-width="8" stroke-linecap="round"/>
+    </svg>
   </div>
-</div>
-
-<!-- ── Header ────────────────────────────────────────────────── -->
-<header class="site-header">
-  <a href="#" class="brand" aria-label="Take Five">
-    <svg viewBox="0 0 64 64" class="tally-mark" aria-hidden="true">
-      <g stroke="#FFB21C" stroke-width="5" stroke-linecap="round">
-        <line x1="16" y1="14" x2="16" y2="50"/>
-        <line x1="24" y1="14" x2="24" y2="50"/>
-        <line x1="32" y1="14" x2="32" y2="50"/>
-        <line x1="40" y1="14" x2="40" y2="50"/>
-        <line x1="13" y1="46" x2="43" y2="18"/>
-      </g>
-    </svg>
-    <span>Take Five</span>
-  </a>
 </header>
 
 <main>
-  <!-- ── Hero ────────────────────────────────────────────────── -->
-  <section class="hero" id="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-eyebrow">TAKE FIVE</p>
-      <h1 class="hero-title">Fresh Food.<br>Great Taste.</h1>
-      <button class="btn-view-menu" id="viewMenuBtn" type="button">
-        View Menu
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-      </button>
-    </div>
-  </section>
-
   <!-- ── Categories / Menu ───────────────────────────────────── -->
   <section class="categories-section" id="categories">
     <div class="section-head">
@@ -159,6 +135,7 @@
   </div>
 </footer>
 
+<script src="header.js"></script>
 <script src="api.js"></script>
 <script src="script.js"></script>
 <script src="orders.js"></script>

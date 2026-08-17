@@ -178,23 +178,8 @@ function renderCart() {
 function openCart() { $("#cartModal").classList.add("open"); document.body.classList.add("no-scroll"); }
 function closeCart() { $("#cartModal").classList.remove("open"); document.body.classList.remove("no-scroll"); }
 
-/* ── Intro ────────────────────────────────────────────────────── */
-function runIntro() {
-  const intro = $("#intro");
-  if (!intro) return;
-  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const delay = reduceMotion ? 30 : 1100;
-  setTimeout(() => {
-    intro.classList.add("intro-out");
-    setTimeout(() => intro.remove(), reduceMotion ? 0 : 550);
-  }, delay);
-}
-
 /* ── Boot ─────────────────────────────────────────────────────── */
 document.addEventListener("DOMContentLoaded", async () => {
-  runIntro();
-
-  $("#viewMenuBtn")?.addEventListener("click", () => $("#categories").scrollIntoView({ behavior: "smooth" }));
   $("#cartBar")?.addEventListener("click", openCart);
   $("#closeCartBtn")?.addEventListener("click", closeCart);
   $("#cartModal")?.addEventListener("click", e => { if (e.target.id === "cartModal") closeCart(); });

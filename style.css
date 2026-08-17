@@ -3,21 +3,20 @@
 ════════════════════════════════════════════════════════════════ */
 
 :root{
-  --white:#FFFFFF;
-  --black:#0D0D0D;
-  --gray-dark:#1A1A1A;
+  --white:#dddbdb;
+  --black:#303030;
+  --gray-dark:#2c2c2c;
   --gray-light:#F5F5F5;
   --gold:#FFB21C;
   --footer-red:#C51F2A;
 
-  --line:#E7E5E1;
+  --line:#000000;
   --r-s:10px;
   --r-m:18px;
   --r-l:28px;
-  --sh-1:0 8px 30px rgba(13,13,13,.08);
-  --sh-2:0 16px 48px rgba(13,13,13,.16);
+  --sh-1:0 8px 30px rgba(49, 49, 49, 0.08);
+  --sh-2:0 16px 48px rgba(0, 0, 0, 0.16);
 
-  --header-h:76px;
   --ease:cubic-bezier(.22,.68,.28,1);
   --t-fast:.2s;
   --t-med:.4s;
@@ -25,6 +24,7 @@
   --font-arabic-display:"Almarai", sans-serif;
   --font-arabic-body:"IBM Plex Sans Arabic", sans-serif;
   --font-latin:"Space Grotesk", sans-serif;
+  --font-playful:"Fredoka", sans-serif;
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -49,76 +49,44 @@ a{color:inherit;text-decoration:none}
 
 /* ── Brand mark ─────────────────────────────────────────────── */
 .tally-mark{width:26px;height:26px;flex:none}
-.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-latin);font-weight:700;font-size:1.15rem;letter-spacing:.02em;color:var(--white)}
 
-/* ── Intro ──────────────────────────────────────────────────── */
-.intro{
-  position:fixed;inset:0;z-index:9999;
-  background:var(--black);
-  display:flex;align-items:flex-end;justify-content:flex-start;
-  padding-inline-start:8vw;
-  padding-block-end:14vh;
-  transition:opacity var(--t-med) var(--ease), transform var(--t-med) var(--ease);
-}
-.intro-mark{
-  display:flex;align-items:center;gap:14px;
-  opacity:0;transform:translateX(-24px);
-  animation:introIn .7s var(--ease) .15s forwards;
-}
-.intro .tally-mark{width:40px;height:40px}
-.intro-word{
-  font-family:var(--font-latin);font-weight:700;
-  font-size:clamp(1.6rem,5vw,2.4rem);color:var(--white);letter-spacing:.02em;
-}
-@keyframes introIn{to{opacity:1;transform:translateX(0)}}
-.intro.intro-out{opacity:0;transform:translateY(-16px);pointer-events:none}
+[hidden]{display:none !important}
 
-/* ── Header ─────────────────────────────────────────────────── */
+/* ── Brand logo (intro) ────────────────────────────────────── */
+.brand-logo{
+  position:relative;
+  direction:ltr;
+  display:inline-flex;flex-direction:column;align-items:center;
+  font-family:var(--font-playful);
+  user-select:none;
+}
+.brand-logo-row{display:flex;align-items:baseline;gap:.06em}
+.brand-five-num{color:var(--footer-red);font-weight:700}
+.brand-take{color:var(--gold);font-weight:600}
+.brand-five-word{color:var(--footer-red);font-weight:700}
+
+.brand-sparkle line{stroke:var(--gold)}
+.brand-smile path{stroke:var(--gold)}
+
+.brand-logo--intro{font-size:clamp(2.6rem,10vw,4.4rem)}
+.brand-logo--intro .brand-sparkle{position:absolute;top:-10px;left:-14px;width:40px;height:40px}
+.brand-logo--intro .brand-smile{width:220px;margin-top:4px}
+
+/* ── Header (permanent, contains only the Take Five logo) ───── */
 .site-header{
-  position:fixed;top:0;left:0;right:0;z-index:500;
-  height:var(--header-h);
-  display:flex;align-items:center;padding:0 clamp(20px,5vw,56px);
-  pointer-events:none;
+  background:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  padding:clamp(28px,6vw,48px) 20px;
+  height: 100vh;
 }
-.site-header .brand{pointer-events:auto}
-
-/* ── Hero ───────────────────────────────────────────────────── */
-/* Swap the Unsplash URL below for the restaurant's own photo whenever ready. */
-.hero{
-  position:relative;min-height:100svh;
-  display:flex;align-items:flex-end;
-  background:
-    linear-gradient(180deg, rgba(13,13,13,.25) 0%, rgba(13,13,13,.55) 62%, rgba(13,13,13,.88) 100%),
-    #14110F url("https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1800&q=80&auto=format&fit=crop") center/cover no-repeat;
+.brand-logo--intro{
+  opacity:0;transform:scale(.86);
+  animation:introPop .6s var(--ease) .1s forwards;
 }
-.hero-overlay{position:absolute;inset:0}
-.hero-content{
-  position:relative;z-index:1;
-  padding:0 clamp(20px,6vw,64px) clamp(56px,10vh,96px);
-  max-width:760px;
-}
-.hero-eyebrow{
-  font-family:var(--font-latin);color:var(--gold);
-  letter-spacing:.28em;font-size:.8rem;font-weight:600;margin-bottom:14px;
-}
-.hero-title{
-  font-family:var(--font-arabic-display);font-weight:800;
-  color:var(--white);
-  font-size:clamp(2.4rem,7vw,4.4rem);line-height:1.08;
-  margin-bottom:32px;
-}
-.btn-view-menu{
-  display:inline-flex;align-items:center;gap:10px;
-  background:var(--gold);color:var(--black);
-  font-family:var(--font-latin);font-weight:600;font-size:1rem;
-  padding:16px 30px;border-radius:999px;
-  transition:transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
-}
-.btn-view-menu:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(255,178,28,.35)}
-.btn-view-menu svg{width:18px;height:18px}
+@keyframes introPop{to{opacity:1;transform:scale(1)}}
 
 /* ── Categories section ────────────────────────────────────── */
-.categories-section{padding:clamp(56px,9vw,96px) clamp(20px,6vw,64px) 140px}
+.categories-section{padding:clamp(48px,9vw,80px) clamp(20px,6vw,64px) 140px}
 .section-head{text-align:center;margin-bottom:clamp(32px,6vw,56px)}
 .section-eyebrow{font-family:var(--font-latin);color:var(--gold);letter-spacing:.24em;font-size:.75rem;font-weight:600;margin-bottom:10px}
 .section-title{font-family:var(--font-arabic-display);font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);color:var(--black)}
@@ -322,6 +290,7 @@ a{color:inherit;text-decoration:none}
   background:var(--footer-red);color:var(--white);
   padding:48px clamp(20px,6vw,64px) 100px;
   display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-start;
+  border-radius: 50px 50px 0 0;
 }
 .footer-brand{display:flex;align-items:center;gap:10px;font-family:var(--font-latin);font-weight:700;font-size:1.3rem}
 .footer-info{display:flex;gap:48px;flex-wrap:wrap}
